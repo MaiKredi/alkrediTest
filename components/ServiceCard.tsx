@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactElement } from "react";
 import type { Lang } from "@/lib/i18n";
 import { ArrowRight } from "lucide-react";
 
@@ -7,7 +7,7 @@ type Props = {
   title: string;
   description: string;
   accent?: string;
-  icon: ReactNode;
+  icon: ReactElement<{ className?: string }> | null;
   lang: Lang;
 };
 
@@ -24,17 +24,17 @@ export default function ServiceCard({
   return (
     <article className="relative w-full max-w-md mx-auto bounce-on-card mt-12 md:mt-0">
       {/* Orb: placed as a sibling so it doesn't become part of the card's flow */}
-      <div className="absolute left-1/2 -translate-x-1/2 -top-14 sm:-top-16 md:-top-20 z-20 pointer-events-none hidden sm:block icon-bounce">
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center bg-linear-to-br from-white/95 via-white/50 to-white/20 shadow-[0_10px_25px_rgba(34,211,238,0.35)] dark:shadow-[0_10px_25px_rgba(34,211,238,0.5)]">
+      <div className="absolute left-1/2 -translate-x-1/2 -top-12 sm:-top-16 md:-top-20 z-20 pointer-events-none icon-bounce">
+        <div className="w-16 sm:w-24 md:w-32 aspect-square overflow-hidden rounded-full flex items-center justify-center bg-linear-to-br from-white/95 via-white/50 to-white/20 shadow-[0_10px_25px_rgba(34,211,238,0.35)] dark:shadow-[0_10px_25px_rgba(34,211,238,0.5)]">
           {icon && React.isValidElement(icon) ? (
-            React.cloneElement(icon as React.ReactElement, {
-              size: 64,
-              className: (((icon as any).props && (icon as any).props.className) || "")
-                .split(" ")
-                .concat(["icon-color"])
-                .filter(Boolean)
-                .join(" ") as string,
-            } as any)
+            (() => {
+              const props = icon.props as { className?: string };
+              const existing = props.className ?? "";
+              const newClass = [existing, "icon-color", "flex-none", "w-8 h-8 sm:w-16 sm:h-16 md:w-24 md:h-24"]
+                .join(" ")
+                .trim();
+              return React.cloneElement(icon, { className: newClass });
+            })()
           ) : null}
         </div>
       </div>
