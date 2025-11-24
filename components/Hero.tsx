@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute left-1/2 bottom-[-6rem] h-72 w-72 aurora-orb-emerald" />
 
       {/* محتوى الهيرو */}
-      <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl items-center px-6 py-16 sm:py-24">
+      <div className="relative mx-auto flex min-h-[60vh] md:min-h-[calc(100vh-4rem)] max-w-5xl items-center px-6 py-12 sm:py-24">
         <div className={`flex w-full flex-col gap-6 ${alignText}`}>
           {/* شريط صغير فوق العنوان */}
           <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-1 text-xs font-medium tracking-[0.18em] text-cyan-200 ring-1 ring-white/10 backdrop-blur">

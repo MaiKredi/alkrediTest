@@ -1,4 +1,3 @@
-
 "use client";
 import { t, type Lang } from "@/lib/i18n";
 import { useLang } from "@/components/ClientProviders";
@@ -142,7 +141,7 @@ function ThemeSwitch() {
 /* =========================
    Language Pill — EN / DE
    ========================= */
-function LangPill() {
+function LangPill({ showIcon = true }: { showIcon?: boolean }) {
   // const pathname = usePathname(); // تم التعليق لأنه غير مستخدم
   const searchParams = useSearchParams();
 
@@ -161,7 +160,7 @@ function LangPill() {
 
   return (
     <div className="flex items-center gap-2">
-      <Globe2 size={16} aria-hidden className="opacity-70" />
+      {showIcon && <Globe2 size={16} aria-hidden className="opacity-70" />}
       <div
         className={[
           "relative inline-flex rounded-full border border-border p-0.5",
@@ -220,16 +219,16 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8 text-sm">
-          <Link href="#services" prefetch={false} className="hover:text-brand">
+          <Link href={`/?lang=${lang}#services`} prefetch={false} className="hover:text-brand">
             {t(lang, "nav.services")}
           </Link>
-          <Link href="#projects" prefetch={false} className="hover:text-brand">
+          <Link href={`/?lang=${lang}#projects`} prefetch={false} className="hover:text-brand">
             {t(lang, "nav.work")}
           </Link>
-          <Link href="#about" prefetch={false} className="hover:text-brand">
+          <Link href={`/?lang=${lang}#about`} prefetch={false} className="hover:text-brand">
             {t(lang, "nav.about")}
           </Link>
-          <Link href="#contact" prefetch={false} className="hover:text-brand">
+          <Link href={`/?lang=${lang}#contact`} prefetch={false} className="hover:text-brand">
             {t(lang, "nav.contact")}
           </Link>
         </nav>
@@ -239,7 +238,7 @@ export default function Header() {
           <ThemeSwitch />
           <LangPill />
           <Link
-            href="#contact"
+            href={`/?lang=${lang}#contact`}
             prefetch={false}
             className="btn-3d px-5 py-2 text-sm"
           >
@@ -260,15 +259,19 @@ export default function Header() {
       {/* Mobile sheet */}
       {open && (
         <div
-          className="md:hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+          className="md:hidden fixed inset-0 z-[60] bg-black/60"
           onClick={() => setOpen(false)}
         >
           <div
-            className="ml-auto h-full w-80 bg-background border-l border-border p-4"
+            className="fixed right-0 top-16 bottom-auto z-[70] w-[85%] sm:w-72 max-h-[calc(100vh-4rem)] overflow-auto rounded-l-2xl p-4 pb-10 flex flex-col shadow-2xl bg-white/10 dark:bg-slate-900/30 border-l border-white/10 dark:border-slate-800 text-foreground"
+            style={{
+              backdropFilter: "blur(40px) saturate(125%)",
+              WebkitBackdropFilter: "blur(40px) saturate(125%)",
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <BrandBig />
+              <div className="w-9 h-9" />
               <button
                 className="rounded-md p-2 hover:bg-card"
                 onClick={() => setOpen(false)}
@@ -278,54 +281,61 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="mt-5 flex items-center justify-between">
-              <ThemeSwitch />
-              <LangPill />
+            <div className="mt-4 flex items-center justify-between">
+              <div className="text-lg text-foreground">{lang === "de" ? "Sprache" : "Language"}</div>
+              <LangPill showIcon={false} />
             </div>
 
-            <nav className="mt-6 flex flex-col gap-4 text-base">
+            <div className="mt-4 flex items-center justify-between">
+              <div className="text-lg text-foreground">{lang === "de" ? "Thema" : "Theme"}</div>
+              <ThemeSwitch />
+            </div>
+
+            <nav className="mt-4 flex flex-col gap-4 text-base">
               <Link
-                href="#services"
+                href={`/?lang=${lang}#services`}
                 prefetch={false}
                 onClick={() => setOpen(false)}
-                className="hover:text-brand"
+                className="text-foreground hover:text-brand"
               >
                 {t(lang, "nav.services")}
               </Link>
               <Link
-                href="#projects"
+                href={`/?lang=${lang}#projects`}
                 prefetch={false}
                 onClick={() => setOpen(false)}
-                className="hover:text-brand"
+                className="text-foreground hover:text-brand"
               >
                 {t(lang, "nav.work")}
               </Link>
               <Link
-                href="#about"
+                href={`/?lang=${lang}#about`}
                 prefetch={false}
                 onClick={() => setOpen(false)}
-                className="hover:text-brand"
+                className="text-foreground hover:text-brand"
               >
                 {t(lang, "nav.about")}
               </Link>
               <Link
-                href="#contact"
+                href={`/?lang=${lang}#contact`}
                 prefetch={false}
                 onClick={() => setOpen(false)}
-                className="hover:text-brand"
+                className="text-foreground hover:text-brand"
               >
                 {t(lang, "nav.contact")}
               </Link>
             </nav>
 
-            <Link
-              href="#contact"
-              prefetch={false}
-              onClick={() => setOpen(false)}
-              className="mt-6 inline-flex btn-3d px-5 py-2 text-sm"
-            >
-              {t(lang, "cta.primary")}
-            </Link>
+            <div className="mt-auto pt-10">
+              <Link
+                href={`/?lang=${lang}#contact`}
+                prefetch={false}
+                onClick={() => setOpen(false)}
+                className="inline-flex btn-3d px-5 py-2 text-sm text-foreground"
+              >
+                {t(lang, "cta.primary")}
+              </Link>
+            </div>
           </div>
         </div>
       )}

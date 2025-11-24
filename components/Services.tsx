@@ -70,7 +70,7 @@ export default function Services() {
         </div>
 
         {/* الكروت */}
-<div className="pt-12 grid gap-8 md:grid-cols-3">
+  <div className="pt-12 grid gap-x-6 gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-8 lg:gap-8">
   {items.map((svc, idx) => (
     <ServiceCard
       key={svc.title + idx}

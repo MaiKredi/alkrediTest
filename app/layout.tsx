@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={`${inter.variable} bg-background text-foreground antialiased`}
+        className={`${inter.variable} bg-background text-foreground antialiased overflow-x-hidden`}
       >
         {/* ✨ لفّ التطبيق بالموفّر ليُعاد تركيب الشجرة عند تبديل ?lang= */}
         <React.Suspense>
