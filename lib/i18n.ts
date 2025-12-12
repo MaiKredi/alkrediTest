@@ -30,6 +30,18 @@ const dict = {
       projects: {
         title: "Ausgewählte Projekte",
       },
+      about: {
+        title: "Über mich",
+        subtitle: "Wer steckt hinter Alkredi?",
+        description:
+          "Ich bin Anis Alkredi – Webentwickler, KI-Enthusiast und Berater für digitale Lösungen. Mein Fokus liegt darauf, kleinen Unternehmen und Selbstständigen zu helfen, ihre Online-Präsenz zu stärken und Prozesse zu automatisieren.",
+        mission:
+          "Meine Mission ist es, moderne Technologie zugänglich zu machen und praktische, benutzerfreundliche Lösungen zu schaffen, die echten Mehrwert bieten.",
+        approach: "Was mich auszeichnet:",
+        point1: "Klare Kommunikation und schnelle Umsetzung",
+        point2: "Fokus auf Business-Ziele, nicht nur Technik",
+        point3: "Langjährige Erfahrung mit modernen Web- und KI-Tools",
+      },
     },
 
     footer: {
@@ -127,6 +139,18 @@ Alle Inhalte dieser Seite sind urheberrechtlich geschützt.
       },
       projects: {
         title: "Selected Work",
+      },
+      about: {
+        title: "About",
+        subtitle: "Who is behind Alkredi?",
+        description:
+          "I'm Anis Alkredi — web developer, AI enthusiast, and consultant for digital solutions. My focus is on helping small businesses and freelancers strengthen their online presence and automate their processes.",
+        mission:
+          "My mission is to make modern technology accessible and create practical, user-friendly solutions that provide real value.",
+        approach: "What sets me apart:",
+        point1: "Clear communication and fast implementation",
+        point2: "Focus on business goals, not just technology",
+        point3: "Years of experience with modern web and AI tools",
       },
     },
 
